@@ -2,7 +2,6 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -27,5 +26,11 @@ module.exports = {
     'react/prop-types': 'off',
     'no-extra-semi': 'off',
     'react/jsx-no-useless-fragment': 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    'react/button-has-type': 'off',
+    'react/require-default-props': 'off',
   },
 };

@@ -1,5 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
+
+import styles from '../../styles/home.module.scss';
+
+import logoImg from '../../public/logo.svg';
+
+import { Input } from '../components/ui/Input/index';
+import { Button } from '../components/ui/Button/index';
 
 export default function Home() {
   return (
@@ -8,8 +16,35 @@ export default function Home() {
         <title>SujeitoPizza - Faça seu login</title>
       </Head>
 
-      <div>
-        <h1>Sujeito Pizzaria</h1>
+      <div className={styles.containerCenter}>
+        <Image src={logoImg} alt="Logo Sujeito Pizzaria" />
+
+        <div className={styles.login}>
+          <form action="">
+            <Input
+              placeholder="Digite seu email"
+              type="text"
+            />
+
+            <Input
+              placeholder="Sua senha"
+              type="password"
+            />
+
+            <Button
+              type="submit"
+              loading={false}
+            >
+              Acessar
+            </Button>
+          </form>
+
+          <a
+            className={styles.text}
+          >
+            Não possui uma conta? Cadastre-se
+          </a>
+        </div>
       </div>
     </>
   );

@@ -10,6 +10,8 @@ import logoImg from '../../public/logo.svg';
 
 import { AuthContext } from '../contexts/AuthContext';
 
+import { caSSRGuest } from '../utils/canSSRGuest';
+
 import { Input } from '../components/ui/Input/index';
 import { Button } from '../components/ui/Button/index';
 
@@ -84,3 +86,9 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = caSSRGuest(async (context) => {
+  return {
+    props: {},
+  };
+});

@@ -36,5 +36,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'valid-typeof': 'off',
     'dot-notation': 'off',
+    'no-return-await': 'off',
+    'consistent-return': 'off',
   },
 };

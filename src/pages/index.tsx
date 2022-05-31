@@ -2,6 +2,7 @@ import React, { useContext, FormEvent, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 import styles from '../../styles/home.module.scss';
 
@@ -24,6 +25,8 @@ export default function Home() {
     event.preventDefault();
 
     if (email === '' || password === '') {
+      toast.warn('Preencha todos campos corretamente.');
+
       return;
     };
 

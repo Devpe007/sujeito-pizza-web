@@ -33,5 +33,7 @@ module.exports = {
     'react/button-has-type': 'off',
     'react/require-default-props': 'off',
     'react/jsx-no-constructed-context-values': 'off',
+    'arrow-body-style': 'off',
+    'valid-typeof': 'off',
   },
 };

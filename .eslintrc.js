@@ -35,5 +35,6 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 'off',
     'arrow-body-style': 'off',
     'valid-typeof': 'off',
+    'dot-notation': 'off',
   },
 };

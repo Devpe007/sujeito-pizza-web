@@ -32,5 +32,6 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'react/button-has-type': 'off',
     'react/require-default-props': 'off',
+    'react/jsx-no-constructed-context-values': 'off',
   },
 };

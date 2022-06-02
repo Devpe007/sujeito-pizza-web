@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 2rem;
+  margin: 4rem auto;
+
+  max-width: 720px;
+}
+
+.container h1 {
+  color: var(--white);
+}
+
+.containerHeader {
+  display: flex;
+  flex-direction: row;
+
+  button {
+    margin-left: 1rem;
+
+    border: 0;
+
+    background: transparent;
+  }
+}
+
+.listOrders {
+  display: flex;
+  flex-direction: column;
+
+  margin: 1rem 0;
+}
+
+.orderItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-bottom: 1rem;
+
+  border-radius: 0.3rem;
+
+  background-color: var(--dark-900);
+
+  button {
+    display: flex;
+    align-items: center;
+
+    height: 60px;
+
+    border: 0;
+
+    font-size: 1.2rem;
+
+    color: var(--white);
+    background: transparent;
+  }
+}
+
+.tag {
+  margin-right: 1rem;
+
+  width: 9px;
+  height: 60px;
+
+  border-radius: 0.3rem 0 0 0.3rem;
+
+  background-color: var(--green-900);
+}

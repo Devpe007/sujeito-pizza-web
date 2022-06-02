@@ -67,6 +67,28 @@ function Dashboard({ orders }: HomeProps) {
     setModalVisible(true);
   };
 
+  async function handleFinishItem(id: string) {
+    const apiClient = setupApiClient();
+
+    await apiClient.put('/order/finish', {
+      order_id: id,
+    });
+
+    const response = await apiClient.get('/orders');
+
+    setOrderList(response.data);
+
+    setModalVisible(false);
+  };
+
+  async function handleRefreshOrders() {
+    const apiClient = setupApiClient();
+
+    const response = await apiClient.get('/orders');
+
+    setOrderList(response.data);
+  };
+
   Modal.setAppElement('#__next');
 
   return (
@@ -81,7 +103,7 @@ function Dashboard({ orders }: HomeProps) {
         <main className={styles.container}>
           <div className={styles.containerHeader}>
             <h1>Últimos pedidos</h1>
-            <button>
+            <button onClick={handleRefreshOrders}>
               <FiRefreshCcw
                 color="#3fffa3"
                 size={25}
@@ -90,6 +112,12 @@ function Dashboard({ orders }: HomeProps) {
           </div>
 
           <article className={styles.listOrders}>
+            {orderList.length === 0 && (
+              <span className={styles.emptyList}>
+                Não há nenhum pedido em aberto...
+              </span>
+            )}
+
             {orderList.map((item) => (
               <section
                 className={styles.orderItem}
@@ -110,6 +138,7 @@ function Dashboard({ orders }: HomeProps) {
             isOpen={modalVisible}
             onRequestClose={handleCloseModal}
             order={modalItem}
+            handleFinishOrder={handleFinishItem}
           />
         )}
       </div>

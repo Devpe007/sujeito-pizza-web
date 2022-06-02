@@ -1,0 +1,79 @@
+import React from 'react';
+import Modal from 'react-modal';
+
+import { FiX } from 'react-icons/fi';
+import styles from './styles.module.scss';
+
+import { OrderItemProps } from '../../pages/dashboard';
+
+interface ModalOrderProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  order: OrderItemProps[];
+};
+
+function ModalOrder({ isOpen, onRequestClose, order }: ModalOrderProps) {
+  const customStyles = {
+    content: {
+      top: '50%',
+      bottom: 'auto',
+      left: '50%',
+      right: 'auto',
+      padding: '30px',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#1d1d2e',
+    },
+  };
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      style={customStyles}
+    >
+      <button
+        className="react-modal-close"
+        type="button"
+        onClick={onRequestClose}
+        style={{ background: 'transparent', border: 0 }}
+      >
+        <FiX
+          size={45}
+          color="#f34748"
+        />
+      </button>
+
+      <div className={styles.container}>
+        <h2>Detalhes do pedido</h2>
+
+        <span className={styles.table}>
+          Mesa: <strong>{order[0].order.table}</strong>
+        </span>
+
+        {order.map((item) => (
+          <section
+            className={styles.containerItem}
+            key={item.id}
+          >
+            <span>{item.amount} - <strong>{item.product.name}</strong></span>
+            <span
+              className={styles.description}
+            >
+              {item.product.description}
+            </span>
+          </section>
+        ))}
+
+        <button
+          className={styles.buttonOrder}
+          onClick={() => {}}
+        >
+          Concluir pedido
+        </button>
+
+      </div>
+    </Modal>
+  );
+};
+
+export default ModalOrder;

@@ -6,6 +6,8 @@ import styles from './styles.module.scss';
 
 import { setupApiClient } from '../../services/api';
 
+import { canSSRAuth } from '../../utils/canSSRAuth';
+
 import Header from '../../components/Header';
 
 function Category() {
@@ -66,3 +68,9 @@ function Category() {
 };
 
 export default Category;
+
+export const getServerSideProps = canSSRAuth(async (context) => {
+  return {
+    props: {},
+  };
+});

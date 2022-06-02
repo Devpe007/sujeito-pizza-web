@@ -39,5 +39,6 @@ module.exports = {
     'no-return-await': 'off',
     'consistent-return': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'react/jsx-one-expression-per-line': 'off',
   },
 };

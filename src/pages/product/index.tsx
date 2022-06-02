@@ -1,5 +1,6 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import Head from 'next/head';
+import { toast } from 'react-toastify';
 
 import { FiUpload } from 'react-icons/fi';
 import styles from './styles.module.scss';
@@ -20,6 +21,10 @@ interface CategoryProps {
 }
 
 function Product({ categoryList }: CategoryProps) {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState('');
+
   const [avatarUrl, setAvatarUrl] = useState('');
   const [imageAvatar, setImageAvatar] = useState(null);
 
@@ -46,6 +51,40 @@ function Product({ categoryList }: CategoryProps) {
     setCategorySelected(event.target.value);
   };
 
+  async function handleRegister(event: FormEvent) {
+    event.preventDefault();
+
+    try {
+      const data = new FormData();
+
+      if (name === '' || price === '' || description === '' || imageAvatar === null) {
+        toast.error('Preecha todos os campos corretamente.');
+
+        return;
+      };
+
+      data.append('name', name);
+      data.append('price', price);
+      data.append('description', description);
+      data.append('category_id', categories[categorySelected].id);
+      data.append('file', imageAvatar);
+
+      const apiClient = setupApiClient();
+
+      await apiClient.post('/product', data);
+
+      toast.success('Produto cadastrado com sucesso.');
+    } catch (error) {
+      toast.error('Ops, erro ao cadastrar');
+    };
+
+    setName('');
+    setPrice('');
+    setDescription('');
+    setImageAvatar(null);
+    setAvatarUrl('');
+  };
+
   return (
     <>
       <Head>
@@ -58,7 +97,10 @@ function Product({ categoryList }: CategoryProps) {
         <main className={styles.container}>
           <h1>Novo Produto</h1>
 
-          <form className={styles.form}>
+          <form
+            className={styles.form}
+            onSubmit={handleRegister}
+          >
             <label className={styles.labelAvatar}>
               <span>
                 <FiUpload
@@ -105,17 +147,23 @@ function Product({ categoryList }: CategoryProps) {
               className={styles.input}
               type="text"
               placeholder="Digite o nome do produto"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
             />
 
             <input
               className={styles.input}
               type="text"
               placeholder="Preço do produto"
+              value={price}
+              onChange={(event) => setPrice(event.target.value)}
             />
 
             <textarea
               className={styles.input}
               placeholder="Descreva seu produto..."
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
             />
 
             <button
